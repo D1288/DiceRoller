@@ -5,6 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Random randomNum = new Random();
         int totalScore = 0;
+        ArrayList<Dice> diceList = new ArrayList<>();
 
         System.out.println("Enter the number of sides your dice has");
         int dieSides = scanner.nextInt();
@@ -12,8 +13,13 @@ public class Main {
         System.out.println("How many of these die are you rolling?");
         int numOfDie = scanner.nextInt();
 
-        for(int i = 0; i<= numOfDie -1; i++){
-            int dieScore = randomNum.nextInt(dieSides) + 1;
+
+        for(int i =0; i < numOfDie; i++){
+            diceList.add(new Dice(dieSides));
+        }
+
+        for(Dice dice : diceList){
+            int dieScore = randomNum.nextInt(dice.dieSides) + 1;
             System.out.println(dieScore);
             totalScore += dieScore;
         }

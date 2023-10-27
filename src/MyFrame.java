@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class MyFrame extends JFrame implements ActionListener {
     JComboBox comboBoxD4;
@@ -18,6 +21,7 @@ public class MyFrame extends JFrame implements ActionListener {
 
         rollButton.setText("Roll!");
         rollButton.setFont(new Font("MV Boli", Font.BOLD, 40));
+        rollButton.addActionListener(this);
 
         MyLabel d4Label = new MyLabel(4);
         MyLabel d6Label = new MyLabel(6);
@@ -38,6 +42,13 @@ public class MyFrame extends JFrame implements ActionListener {
         comboBoxD10 = new JComboBox(numOfDie);
         comboBoxD12 = new JComboBox(numOfDie);
         comboBoxD20 = new JComboBox(numOfDie);
+
+        comboBoxD4.addActionListener(this);
+        comboBoxD6.addActionListener(this);
+        comboBoxD8.addActionListener(this);
+        comboBoxD10.addActionListener(this);
+        comboBoxD12.addActionListener(this);
+        comboBoxD20.addActionListener(this);
 
 
 
@@ -66,10 +77,56 @@ public class MyFrame extends JFrame implements ActionListener {
     }
 
 
+
+    //dice roll implementation
+
+    Random randomNum = new Random();
+
+    ArrayList<Dice> diceList = new ArrayList<>();
+    int dieSides;
+    int numOfDie;
+    public void addDie(int usersDice) {
+        dieSides = usersDice;
+        diceList.add(new Dice(dieSides));
+    }
+
+    public void rollDie(){
+        int totalScore = 0;
+        for (Dice dice : diceList) {
+            int dieScore = randomNum.nextInt(dice.dieSides) + 1;
+            System.out.println("The " + dice.dieSides + " sided die rolled a " + dieScore);
+            totalScore += dieScore;
+        }
+
+        System.out.println("Your total is: " + totalScore);
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == comboBoxD4){
+            addDie(4);
+        } else if(e.getSource() == comboBoxD6){
+            addDie(6);
+        } else if(e.getSource() == comboBoxD8){
+            addDie(8);
+        } else if (e.getSource() == comboBoxD10){
+            addDie(10);
+        } else if (e.getSource() == comboBoxD12){
+            addDie(12);
+        } else  if (e.getSource() == comboBoxD20){
+            addDie(20);
+        }
+
+        if(e.getSource() == rollButton){
+            rollDie();
+        }
 
     }
+
+
+
+
 
 
 }

@@ -3,4 +3,8 @@ public class Dice {
     Dice(int sides){
         dieSides = sides;
     }
+
+    public int getDieSides(){
+        return dieSides;
+    }
 }

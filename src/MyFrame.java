@@ -7,12 +7,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class MyFrame extends JFrame implements ActionListener {
-    JComboBox comboBoxD4;
-    JComboBox comboBoxD6;
-    JComboBox comboBoxD8;
-    JComboBox comboBoxD10;
-    JComboBox comboBoxD12;
-    JComboBox comboBoxD20;
+    JComboBox<Integer> comboBoxD4;
+    JComboBox<Integer> comboBoxD6;
+    JComboBox<Integer> comboBoxD8;
+    JComboBox<Integer> comboBoxD10;
+    JComboBox<Integer> comboBoxD12;
+    JComboBox<Integer> comboBoxD20;
 
     JButton rollButton = new JButton();
 
@@ -36,12 +36,12 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setTitle("D20 Dice Roller");
 
         Integer[] numOfDie = {0,1,2,3,4,5,6,7,8,9};
-        comboBoxD4 = new JComboBox(numOfDie);
-        comboBoxD6 = new JComboBox(numOfDie);
-        comboBoxD8 = new JComboBox(numOfDie);
-        comboBoxD10 = new JComboBox(numOfDie);
-        comboBoxD12 = new JComboBox(numOfDie);
-        comboBoxD20 = new JComboBox(numOfDie);
+        comboBoxD4 = new JComboBox<>(numOfDie);
+        comboBoxD6 = new JComboBox<>(numOfDie);
+        comboBoxD8 = new JComboBox<>(numOfDie);
+        comboBoxD10 = new JComboBox<>(numOfDie);
+        comboBoxD12 = new JComboBox<>(numOfDie);
+        comboBoxD20 = new JComboBox<>(numOfDie);
 
         comboBoxD4.addActionListener(this);
         comboBoxD6.addActionListener(this);
@@ -102,26 +102,56 @@ public class MyFrame extends JFrame implements ActionListener {
     }
 
 
+
+    private int prevSelectedValueD4 = 0;
+    private int prevSelectedValueD6 = 0;
+    private int prevSelectedValueD8 = 0;
+    private int prevSelectedValueD10 = 0;
+    private int prevSelectedValueD12 = 0;
+    private int prevSelectedValueD20 = 0;
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == comboBoxD4){
-            addDie(4);
-        } else if(e.getSource() == comboBoxD6){
-            addDie(6);
-        } else if(e.getSource() == comboBoxD8){
-            addDie(8);
-        } else if (e.getSource() == comboBoxD10){
-            addDie(10);
-        } else if (e.getSource() == comboBoxD12){
-            addDie(12);
-        } else  if (e.getSource() == comboBoxD20){
-            addDie(20);
-        }
-
-        if(e.getSource() == rollButton){
+        if (e.getSource() == rollButton){
             rollDie();
+        } else {
+
+            JComboBox<Integer> selectedComboBox = (JComboBox<Integer>) e.getSource();
+            int selectedValue = (int) selectedComboBox.getSelectedItem();
+
+            if (selectedComboBox == comboBoxD4) {
+                handleDieSelection(4, selectedValue, prevSelectedValueD4);
+                prevSelectedValueD4 = selectedValue;
+            } else if (selectedComboBox == comboBoxD6) {
+                handleDieSelection(6, selectedValue, prevSelectedValueD6);
+                prevSelectedValueD6 = selectedValue;
+            } else if (selectedComboBox == comboBoxD8) {
+                handleDieSelection(8, selectedValue, prevSelectedValueD8);
+                prevSelectedValueD8 = selectedValue;
+            } else if (selectedComboBox == comboBoxD10) {
+                handleDieSelection(10, selectedValue, prevSelectedValueD10);
+                prevSelectedValueD10 = selectedValue;
+            } else if (selectedComboBox == comboBoxD12) {
+                handleDieSelection(12, selectedValue, prevSelectedValueD12);
+                prevSelectedValueD12 = selectedValue;
+            } else if (selectedComboBox == comboBoxD20) {
+                handleDieSelection(20, selectedValue, prevSelectedValueD20);
+                prevSelectedValueD20 = selectedValue;
+            }
         }
 
+        }
+
+    private void handleDieSelection(int sides, int selectedValue, int prevSelectedValue){
+        if (selectedValue > prevSelectedValue){
+            for(int i = 0; i < selectedValue - prevSelectedValue; i++){
+                diceList.add(new Dice(sides));
+            }
+            System.out.println("Added " + (selectedValue - prevSelectedValue) + " " + sides + "-sided dice to the list.");
+        } else if (selectedValue < prevSelectedValue) {
+            final int[] removeCount = {prevSelectedValue - selectedValue};
+            diceList.removeIf(dice -> dice.getDieSides() == sides && removeCount[0]-- > 0 );
+            System.out.println("Removed " + (prevSelectedValue - selectedValue) + " " + sides + "-sided dice from the list.");
+        }
     }
 
 

@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
+
 
 public class MyFrame extends JFrame implements ActionListener {
     JComboBox<Integer> comboBoxD4;
@@ -15,6 +15,8 @@ public class MyFrame extends JFrame implements ActionListener {
     JComboBox<Integer> comboBoxD20;
 
     JButton rollButton = new JButton();
+    ScoreLabel scoreLabel = new ScoreLabel();
+    JLabel infoLabel = new JLabel();
 
 
     MyFrame(){
@@ -70,7 +72,18 @@ public class MyFrame extends JFrame implements ActionListener {
         this.add(comboBoxD20);
         this.add(d20Label);
 
-        this.add(rollButton);
+//        this.add(rollButton, BorderLayout.SOUTH);
+//        this.add(scoreLabel, BorderLayout.SOUTH);
+
+        JPanel labelPanel = new JPanel();
+        labelPanel.setLayout(new BorderLayout()); // Use FlowLayout for labels
+        labelPanel.add(rollButton, BorderLayout.NORTH);
+        labelPanel.add(scoreLabel, BorderLayout.CENTER);
+        labelPanel.add(infoLabel, BorderLayout.SOUTH);
+        labelPanel.setBackground(new Color(190,192,190));
+
+        this.add(labelPanel);
+//        this.add(infoLabel, BorderLayout.SOUTH);
 
         this.getContentPane().setBackground(new Color(190,192,190));
         this.setVisible(true);
@@ -83,21 +96,21 @@ public class MyFrame extends JFrame implements ActionListener {
     Random randomNum = new Random();
 
     ArrayList<Dice> diceList = new ArrayList<>();
-    int dieSides;
-    int numOfDie;
-    public void addDie(int usersDice) {
-        dieSides = usersDice;
-        diceList.add(new Dice(dieSides));
-    }
 
+
+    String infoLabelText = "";
     public void rollDie(){
         int totalScore = 0;
         for (Dice dice : diceList) {
+
             int dieScore = randomNum.nextInt(dice.dieSides) + 1;
+            infoLabelText += "The " + dice.dieSides + " sided die rolled a " + dieScore + "<br>";
+            infoLabel.setText("<html>" + infoLabelText + "</html>");
             System.out.println("The " + dice.dieSides + " sided die rolled a " + dieScore);
             totalScore += dieScore;
         }
 
+        scoreLabel.setText("Your total is: " + totalScore);
         System.out.println("Your total is: " + totalScore);
     }
 
@@ -112,6 +125,7 @@ public class MyFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == rollButton){
+            infoLabelText = "";
             rollDie();
         } else {
 

@@ -18,8 +18,8 @@ public class MyFrame extends JFrame implements ActionListener {
     ScoreLabel scoreLabel = new ScoreLabel();
     JLabel infoLabel = new JLabel();
 
-
     MyFrame(){
+
 
         rollButton.setText("Roll!");
         rollButton.setFont(new Font("MV Boli", Font.BOLD, 40));
@@ -54,7 +54,7 @@ public class MyFrame extends JFrame implements ActionListener {
 
 
 
-        ImageIcon image = new ImageIcon("img.png");
+        ImageIcon image = new ImageIcon("d20logo.png");
         this.setIconImage(image.getImage());
 
 
@@ -126,7 +126,11 @@ public class MyFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == rollButton){
             infoLabelText = "";
-            rollDie();
+            Timer timer = new Timer(5000, e1 -> rollDie());
+            timer.setRepeats(false);
+            timer.start();
+            new AnimationFrame();
+
         } else {
 
             JComboBox<Integer> selectedComboBox = (JComboBox<Integer>) e.getSource();
@@ -167,6 +171,8 @@ public class MyFrame extends JFrame implements ActionListener {
             System.out.println("Removed " + (prevSelectedValue - selectedValue) + " " + sides + "-sided dice from the list.");
         }
     }
+
+
 
 
 

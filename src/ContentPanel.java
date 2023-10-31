@@ -101,7 +101,7 @@ public class ContentPanel extends JPanel implements ActionListener {
             totalScore += dieScore;
         }
 
-        scoreLabel.setText("Your total is: " + totalScore);System.out.println("Your total is: " + totalScore);
+        scoreLabel.setText("Your total is: " + totalScore);
     }
 
 
@@ -163,7 +163,6 @@ public class ContentPanel extends JPanel implements ActionListener {
                 newDice.setYPosition(0);
 
             }
-            System.out.println("Added " + (selectedValue - prevSelectedValue) + " " + sides + "-sided dice to the list.");
         } else if (selectedValue < prevSelectedValue) {
             final int[] removeCount = {prevSelectedValue - selectedValue};
             diceList.removeIf(dice -> dice.getDieSides() == sides && removeCount[0]-- > 0 );

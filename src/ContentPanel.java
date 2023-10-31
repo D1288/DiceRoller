@@ -20,6 +20,8 @@ public class ContentPanel extends JPanel implements ActionListener {
     AnimationPanel animPanel;
     MyFrame frame;
 
+    Random randomNum = new Random();
+
     ContentPanel(MyFrame frame){
         this.setBackground(new Color(190,192,190));
         this.frame = frame;
@@ -27,6 +29,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 
         rollButton.setText("Roll!");
         rollButton.setFont(new Font("MV Boli", Font.BOLD, 40));
+        rollButton.setPreferredSize(new Dimension(250, 70));
         rollButton.addActionListener(this);
 
         MyLabel d4Label = new MyLabel(4);
@@ -80,7 +83,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 
     //dice roll implementation
 
-    Random randomNum = new Random();
+
 
     ArrayList<Dice> diceList = new ArrayList<>();
 
@@ -111,15 +114,17 @@ public class ContentPanel extends JPanel implements ActionListener {
     private int prevSelectedValueD20 = 0;
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == rollButton){
+        if (e.getSource() == rollButton) {
             infoLabelText = "";
-            Timer timer = new Timer(5000, e1 -> rollDie());
-            timer.setRepeats(false);
-            timer.start();
-            addAnimPanel();
+            if(!diceList.isEmpty()) {
+                Timer timer = new Timer(5000, e1 -> rollDie());
+                timer.setRepeats(false);
+                timer.start();
+                addAnimPanel();
+
+            }
 
         } else {
-
             JComboBox<Integer> selectedComboBox = (JComboBox<Integer>) e.getSource();
             int selectedValue = (int) selectedComboBox.getSelectedItem();
 
@@ -149,7 +154,14 @@ public class ContentPanel extends JPanel implements ActionListener {
     private void handleDieSelection(int sides, int selectedValue, int prevSelectedValue){
         if (selectedValue > prevSelectedValue){
             for(int i = 0; i < selectedValue - prevSelectedValue; i++){
-                diceList.add(new Dice(sides));
+                double xVelocity = randomNum.nextDouble() * 10;
+                double yVelocity = randomNum.nextDouble() * 10;
+                Dice newDice = new Dice(sides, 0,0, xVelocity, yVelocity);
+                diceList.add(newDice);
+
+                newDice.setXPosition(0);
+                newDice.setYPosition(0);
+
             }
             System.out.println("Added " + (selectedValue - prevSelectedValue) + " " + sides + "-sided dice to the list.");
         } else if (selectedValue < prevSelectedValue) {
@@ -161,7 +173,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 
     private void addAnimPanel(){
         this.setVisible(false);
-        animPanel = new AnimationPanel();
+        animPanel = new AnimationPanel(diceList);
         frame.add(animPanel);
 
         Timer animTimer = new Timer(5000, new ActionListener() {

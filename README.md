@@ -2,8 +2,8 @@
 
 ![D20 Dice Roller](d20logo.png)
 
--D20 Dice Roller is a Java application that allows users to roll custom numbers of dice. 
--It provides an animation for rolling the dice and displays the total score along with individual results for each die rolled.
+D20 Dice Roller is a Java application that allows users to roll custom numbers of dice. <br>
+It provides an animation for rolling the dice and displays the total score along with individual results for each die rolled.
 
 ## Features
 
@@ -43,7 +43,7 @@ If you'd like to contribute to this project, please follow these steps:
 - Create a pull request to the original repository.
 
 ## Acknowledgments
-- BroCode's java tutorial series for helping me get started with Java GUI's
+- BroCode's java tutorial series for helping me get started with Java GUI <br>
 - OpenAI for developing ChatGPT, which helped in creating this README.
 
 

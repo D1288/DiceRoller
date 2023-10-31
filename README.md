@@ -43,8 +43,8 @@ If you'd like to contribute to this project, please follow these steps:
 - Create a pull request to the original repository.
 
 ## Acknowledgments
-- BroCode's java tutorial series for helping me get started with Java GUI <br>
-- OpenAI for developing ChatGPT, which helped in creating this README.
+BroCode's java tutorial series for helping me get started with Java GUI <br>
+OpenAI for developing ChatGPT, which helped in creating this README.
 
 
 

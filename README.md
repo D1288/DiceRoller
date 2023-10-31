@@ -29,11 +29,11 @@ It provides an animation for rolling the dice and displays the total score along
 4. Use the interface to add a number of dice and roll!
 
 
-##Dependencies
+## Dependencies
 
   Java Development Kit (JDK) 8 or later
 
-##Contributing
+## Contributing
 If you'd like to contribute to this project, please follow these steps:
 
 Fork the repository.
@@ -42,7 +42,7 @@ Make your changes and commit them.
 Push your changes to your fork.
 Create a pull request to the original repository.
 
-##Acknowledgments
+## Acknowledgments
 BroCode's java tutorial series for helping me get started with Java GUI's
 OpenAI for developing ChatGPT, which helped in creating this README.
 

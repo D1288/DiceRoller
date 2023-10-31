@@ -176,14 +176,11 @@ public class ContentPanel extends JPanel implements ActionListener {
         animPanel = new AnimationPanel(diceList);
         frame.add(animPanel);
 
-        Timer animTimer = new Timer(5000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(animPanel);
-                ContentPanel.this.setVisible(true);
-                frame.revalidate();
-                frame.repaint();
-            }
+        Timer animTimer = new Timer(5000, e -> {
+            frame.remove(animPanel);
+            ContentPanel.this.setVisible(true);
+            frame.revalidate();
+            frame.repaint();
         });
         animTimer.setRepeats(false);
         animTimer.start();

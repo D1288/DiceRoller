@@ -52,17 +52,17 @@ public class AnimationPanel extends JPanel implements ActionListener {
             int yPosition = (int) dice.getYPosition();
 
             if(dice.getDieSides() ==4){
-                g2d.drawImage(d4, (int) xPosition, (int) yPosition, null);
+                g2d.drawImage(d4, xPosition, yPosition, null);
             } else if(dice.getDieSides() == 6){
-                g2d.drawImage(d6, (int) xPosition, (int) yPosition, null);
+                g2d.drawImage(d6, xPosition, yPosition, null);
             } else if(dice.getDieSides() == 8){
-                g2d.drawImage(d8, (int) xPosition, (int) yPosition, null);
+                g2d.drawImage(d8, xPosition, yPosition, null);
             } else if(dice.getDieSides() ==10){
-                g2d.drawImage(d10, (int) xPosition, (int) yPosition, null);
+                g2d.drawImage(d10, xPosition, yPosition, null);
             } else if(dice.getDieSides() == 12){
-                g2d.drawImage(d12, (int) xPosition, (int) yPosition, null);
+                g2d.drawImage(d12, xPosition, yPosition, null);
             } else if(dice.getDieSides() == 20){
-                g2d.drawImage(d20, (int) xPosition, (int) yPosition, null);
+                g2d.drawImage(d20, xPosition, yPosition, null);
 
             }
         }

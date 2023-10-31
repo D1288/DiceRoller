@@ -16,7 +16,7 @@
 
 1. Clone the repository to your local machine:
    
-  - git clone https://github.com/yourusername/d20-dice-roller.git
+   - git clone https://github.com/yourusername/d20-dice-roller.git
    
 
 3. Navigate to the directory you downloaded and build the application:

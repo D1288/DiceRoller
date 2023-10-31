@@ -2,8 +2,8 @@
 
 ![D20 Dice Roller](d20logo.png)
 
-D20 Dice Roller is a Java application that allows users to roll custom numbers of dice. 
-It provides an animation for rolling the dice and displays the total score along with individual results for each die rolled.
+-D20 Dice Roller is a Java application that allows users to roll custom numbers of dice. 
+-It provides an animation for rolling the dice and displays the total score along with individual results for each die rolled.
 
 ## Features
 
@@ -16,14 +16,14 @@ It provides an animation for rolling the dice and displays the total score along
 
 1. Clone the repository to your local machine:
    
-   git clone https://github.com/yourusername/d20-dice-roller.git
+  - git clone https://github.com/yourusername/d20-dice-roller.git
    
 
 3. Navigate to the directory you downloaded and build the application:
 
-   cd d20-dice-roller
-   javac Main.java
-   java Main
+   - cd d20-dice-roller
+   - javac Main.java
+   - java Main
 
 
 4. Use the interface to add a number of dice and roll!
@@ -31,20 +31,20 @@ It provides an animation for rolling the dice and displays the total score along
 
 ## Dependencies
 
-  Java Development Kit (JDK) 8 or later
+  -Java Development Kit (JDK) 8 or later
 
 ## Contributing
-If you'd like to contribute to this project, please follow these steps:
+-If you'd like to contribute to this project, please follow these steps:
 
-Fork the repository.
-Create a new branch for your feature or bug fix.
-Make your changes and commit them.
-Push your changes to your fork.
-Create a pull request to the original repository.
+- Fork the repository.
+- Create a new branch for your feature or bug fix.
+- Make your changes and commit them.
+- Push your changes to your fork.
+ -Create a pull request to the original repository.
 
 ## Acknowledgments
-BroCode's java tutorial series for helping me get started with Java GUI's
-OpenAI for developing ChatGPT, which helped in creating this README.
+- BroCode's java tutorial series for helping me get started with Java GUI's
+- OpenAI for developing ChatGPT, which helped in creating this README.
 
 
 

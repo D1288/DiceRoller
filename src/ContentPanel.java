@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+@SuppressWarnings({"unchecked", "StringConcatenation"})
 public class ContentPanel extends JPanel implements ActionListener {
     JComboBox<Integer> comboBoxD4;
     JComboBox<Integer> comboBoxD6;
@@ -89,6 +90,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 
 
     String infoLabelText = "";
+    @SuppressWarnings("StringConcatenationInLoop")
     public void rollDie(){
         int totalScore = 0;
         for (Dice dice : diceList) {
@@ -96,12 +98,10 @@ public class ContentPanel extends JPanel implements ActionListener {
             int dieScore = randomNum.nextInt(dice.dieSides) + 1;
             infoLabelText += "The " + dice.dieSides + " sided die rolled a " + dieScore + "<br>";
             infoLabel.setText("<html>" + infoLabelText + "</html>");
-            System.out.println("The " + dice.dieSides + " sided die rolled a " + dieScore);
             totalScore += dieScore;
         }
 
-        scoreLabel.setText("Your total is: " + totalScore);
-        System.out.println("Your total is: " + totalScore);
+        scoreLabel.setText("Your total is: " + totalScore);System.out.println("Your total is: " + totalScore);
     }
 
 
@@ -126,7 +126,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 
         } else {
             JComboBox<Integer> selectedComboBox = (JComboBox<Integer>) e.getSource();
-            int selectedValue = (int) selectedComboBox.getSelectedItem();
+            @SuppressWarnings("DataFlowIssue") int selectedValue = (int) selectedComboBox.getSelectedItem();
 
             if (selectedComboBox == comboBoxD4) {
                 handleDieSelection(4, selectedValue, prevSelectedValueD4);
@@ -167,7 +167,6 @@ public class ContentPanel extends JPanel implements ActionListener {
         } else if (selectedValue < prevSelectedValue) {
             final int[] removeCount = {prevSelectedValue - selectedValue};
             diceList.removeIf(dice -> dice.getDieSides() == sides && removeCount[0]-- > 0 );
-            System.out.println("Removed " + (prevSelectedValue - selectedValue) + " " + sides + "-sided dice from the list.");
         }
     }
 
